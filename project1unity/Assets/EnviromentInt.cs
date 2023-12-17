@@ -10,6 +10,7 @@ public class EnviromentInt : MonoBehaviour
     public TMP_Text winText;
 
     public bool hasPlayerWon = false;
+    public int coinCounter = 2;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,7 +24,7 @@ public class EnviromentInt : MonoBehaviour
 
     private void ReactToPlayer()
     {
-        hasPlayerWon = true;
+        //hasPlayerWon = true;
 
         // Deactivate or destroy the object
         if (objectToDisappear != null)
@@ -31,11 +32,26 @@ public class EnviromentInt : MonoBehaviour
             // Deactivate the object
             objectToDisappear.SetActive(false);
 
-            // Show the "You Win" text
-            if (winText != null)
+            coinCounter += 1;
+
+            // win condition
+            if(coinCounter == 2) 
             {
-                winText.text = "You Win!";
+                hasPlayerWon = true;
+
+                // Show the "You Win" text
+                if (winText != null)
+                {
+                    winText.text = "You Win!";
+                    winText.gameObject.SetActive(true);
+                }   
             }
         }
+    }
+
+    private void win()
+    {
+
+
     }
 }
